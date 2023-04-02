@@ -1,0 +1,75 @@
+﻿@using OnlineUniversityMVC.Application.Dtos;
+@model EnrollmentDto;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Enrollment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Enrollment Id
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            Student name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Course name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+        <h5>Grades in enrolled course:</h5>
+        <table class="table">
+
+            <tbody>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var module in Model.ModuleGrades)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => module.Module.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => module.Grade)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+
+            </tbody>
+        </table>
+
+    </dl>
+</div>
+<div>
+
+    <a asp-controller="Student" asp-action="MyEnrollments">Back to List</a>
+</div>

@@ -1,0 +1,48 @@
+﻿@using OnlineUniversityMVC.Application.Dtos;
+@model StudentDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<h5>Student is enrolled in following courses:</h5>
+<table class="table">
+
+    <tbody>
+@foreach (var enrollment in Model.Enrollments)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(e => enrollment.Course.Name)
+        </td>
+        <td>
+            <a class="btn btn-primary" asp-controller="Enrollment" asp-action="Details" asp-route-id="@enrollment.Id">Details</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
