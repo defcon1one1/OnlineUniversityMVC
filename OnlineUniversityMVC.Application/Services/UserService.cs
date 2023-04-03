@@ -68,10 +68,5 @@ namespace OnlineUniversityMVC.Application.Services
         {
             return _repository.GetById(id);
         }
-
-        public string GetRoleName(IdentityUser user)
-        {
-            return _repository.GetRoleName(user);
-        }
     }
 }

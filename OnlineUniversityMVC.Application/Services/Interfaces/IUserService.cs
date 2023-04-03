@@ -13,6 +13,5 @@ namespace OnlineUniversityMVC.Application.Services.Interfaces
     {
         Task Create(StudentDto studentDto);
         IdentityUser GetById(string id);
-        string GetRoleName(IdentityUser user);
     }
 }

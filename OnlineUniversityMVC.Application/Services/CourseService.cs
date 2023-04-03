@@ -14,6 +14,7 @@ namespace OnlineUniversityMVC.Application.Services
     {
         private readonly ICourseRepository _repository;
         private readonly IMapper _mapper;
+        private bool disposedValue;
 
         public CourseService(ICourseRepository repository, IMapper mapper)
         {
@@ -39,6 +40,15 @@ namespace OnlineUniversityMVC.Application.Services
             var courses = await _repository.GetAll();
             var coursesDto = _mapper.Map<IEnumerable<Course>, IEnumerable<CourseDto>>(courses);
             return coursesDto;
+        }
+
+        public async Task<CourseDto> GetById(int id)
+        {
+            var course = await _repository.GetById(id);
+            
+               
+            var courseDto = _mapper.Map<CourseDto>(course);
+            return courseDto;
         }
 
     }

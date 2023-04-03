@@ -10,6 +10,12 @@ namespace OnlineUniversityMVC.Infrastructure.Repositories
         private readonly OnlineUniversityMVCDbContext _dbContext;
 
 
+        public async Task<Course?> GetById(int id)
+        {
+            return await _dbContext.Courses
+                    .Include(course => course.Modules)
+                    .FirstOrDefaultAsync(c => c.Id == id);
+        }
         public async Task<Course?> GetByName(string name)
         {
             return await _dbContext.Courses
@@ -20,7 +26,7 @@ namespace OnlineUniversityMVC.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task Create(Domain.Entities.Course course)
+        public async Task Create(Course course)
         {
             _dbContext.Add(course);
             await _dbContext.SaveChangesAsync();
@@ -30,5 +36,6 @@ namespace OnlineUniversityMVC.Infrastructure.Repositories
         {
             return await _dbContext.Courses.ToListAsync();
         }
+
     }
 }

@@ -10,6 +10,6 @@ namespace OnlineUniversityMVC.Domain.Interfaces
     public interface IEnrollmentRepository
     {
         Task<Enrollment?> GetById(int id);
-        Task Enroll(Course course, Student student);
+        Task Create(Enrollment enrollment);
     }
 }

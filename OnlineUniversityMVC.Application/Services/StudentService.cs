@@ -64,5 +64,13 @@ namespace OnlineUniversityMVC.Application.Services
             var studentDto = _mapper.Map<StudentDto>(student);
             return studentDto;
         }
+
+        public async Task<IEnumerable<CourseDto>> GetNotEnrolledCourses(StudentDto studentDto)
+        {
+            var student = _mapper.Map<Student>(studentDto);
+            var notEnrolledCourses = await _studentRepository.GetNotEnrolledCourses(student);
+            var notEnrolledCoursesDto = _mapper.Map<IEnumerable<CourseDto>>(notEnrolledCourses);
+            return notEnrolledCoursesDto;
+        }
     }
 }

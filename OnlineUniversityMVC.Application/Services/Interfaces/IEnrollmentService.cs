@@ -4,8 +4,8 @@ namespace OnlineUniversityMVC.Application.Services
 {
     public interface IEnrollmentService
     {
-        Task Enroll(CourseDto courseDto, StudentDto studentDto);
-        Task<EnrollmentDto> GetById(int id);
+        Task Create(EnrollmentDto enrollmentDto);
+        Task<EnrollmentDto?> GetById(int id);
 
     }
 }

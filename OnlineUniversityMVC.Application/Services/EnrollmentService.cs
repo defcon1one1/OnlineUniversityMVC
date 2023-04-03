@@ -21,18 +21,17 @@ namespace OnlineUniversityMVC.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<EnrollmentDto> GetById(int id)
+        public async Task<EnrollmentDto?> GetById(int id)
         {
             var enrollment = await _repository.GetById(id);
             var enrollmentDto = _mapper.Map<EnrollmentDto>(enrollment);
             return enrollmentDto;
         }
 
-        public async Task Enroll(CourseDto courseDto, StudentDto studentDto) 
+        public async Task Create(EnrollmentDto enrollmentDto) 
         {
-            var course = _mapper.Map<Course>(courseDto);
-            var student = _mapper.Map<Student>(studentDto);
-            await _repository.Enroll(course, student);
+            var enrollment = _mapper.Map<Enrollment>(enrollmentDto);
+            await _repository.Create(enrollment);
         }
 
     }

@@ -47,27 +47,5 @@ namespace OnlineUniversityMVC.Application.ApplicationUser
             return new CurrentUser(id, email);
 
         }
-
-        public string GetCurrentUserRole()
-        {
-            var userContext = _httpContextAccessor.HttpContext?.User;
-            if (userContext == null)
-            {
-                throw new InvalidOperationException("Context user is not present");
-            }
-
-            if (userContext.Identity == null || !userContext.Identity.IsAuthenticated)
-            {
-                return null;
-            }
-
-            var id = userContext.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
-
-            var user = _userService.GetById(id);
-            var role = _userService.GetRoleName(user);
-
-            return role;
-
-        }
     }
 }

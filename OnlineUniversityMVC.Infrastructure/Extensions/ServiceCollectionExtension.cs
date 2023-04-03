@@ -21,8 +21,9 @@ namespace OnlineUniversityMVC.Infrastructure.Extensions
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<OnlineUniversityMVCDbContext>(options => options.UseSqlServer(
-                configuration.GetConnectionString("OnlineUniversityMVC")));
+            services.AddDbContext<OnlineUniversityMVCDbContext>(options => options
+            .UseSqlServer(configuration.GetConnectionString("OnlineUniversityMVC")));
+               
 
 
             services.AddDefaultIdentity<IdentityUser>()

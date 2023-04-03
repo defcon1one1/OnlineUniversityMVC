@@ -35,6 +35,14 @@ namespace OnlineUniversityMVC.Infrastructure.Repositories
             return student.Enrollments.ToList();
         }
 
+        public async Task<IEnumerable<Course>> GetNotEnrolledCourses(Student student)
+        { 
+            var coursesNotEnrolled = await _dbContext.Courses
+                .Where(c => c.IsActive == true && !c.Enrollments.Any(e => e.StudentId == student.Id))
+                .ToListAsync();
+            return coursesNotEnrolled;
+        }
+
 
 
         public async Task<Student?> GetById(int id)

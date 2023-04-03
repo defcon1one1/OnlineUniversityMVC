@@ -12,5 +12,6 @@ namespace OnlineUniversityMVC.Domain.Interfaces
         Task Create(Course course);
         Task<IEnumerable<Course>> GetAll();
         Task<Course?> GetByName(string name);
+        Task<Course?> GetById(int id);
     }
 }

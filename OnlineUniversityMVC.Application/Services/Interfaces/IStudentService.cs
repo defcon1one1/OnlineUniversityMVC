@@ -1,4 +1,5 @@
 ﻿using OnlineUniversityMVC.Application.Dtos;
+using OnlineUniversityMVC.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace OnlineUniversityMVC.Application.Services.Interfaces
         Task<IEnumerable<StudentDto>> GetAll();
         Task Create(StudentDto studentDto);
         Task<IEnumerable<EnrollmentDto>?> GetStudentEnrollments(StudentDto studentDto);
+        Task<IEnumerable<CourseDto>> GetNotEnrolledCourses(StudentDto studentDto);
     }
 }

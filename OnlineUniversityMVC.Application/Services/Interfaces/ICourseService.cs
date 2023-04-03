@@ -7,5 +7,6 @@ namespace OnlineUniversityMVC.Application.Services
         Task Create(CourseDto courseDto);
         Task<IEnumerable<CourseDto>> GetAll();
         Task<CourseDto?> GetByName(string name);
+        Task<CourseDto> GetById(int id);
     }
 }

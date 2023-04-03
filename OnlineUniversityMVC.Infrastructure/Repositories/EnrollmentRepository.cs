@@ -19,7 +19,7 @@ namespace OnlineUniversityMVC.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Domain.Entities.Enrollment?> GetById(int id)
+        public async Task<Enrollment?> GetById(int id)
         {
             return await _dbContext.Enrollments
                         .Include(e => e.Course)
@@ -29,24 +29,16 @@ namespace OnlineUniversityMVC.Infrastructure.Repositories
                         .FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task Enroll(Course course, Student student)
+        public async Task Create(Enrollment enrollment)
         {
-
-            var enrollment = new Enrollment()
-            {
-                Course = course,
-                Student = student
-            };
-            AddGrades(enrollment);
+            _dbContext.Add(enrollment);
             await _dbContext.SaveChangesAsync();
-        }
-
-        private void AddGrades(Enrollment enrollment)
-        {
             foreach (var module in enrollment.Course.Modules)
             {
-                _dbContext.Add(new ModuleGrade() { Enrollment = enrollment, Grade = null, Module = module });
+                var moduleGrade = new ModuleGrade() { EnrollmentId = enrollment.Id, ModuleId = module.Id, Grade = null };
+                _dbContext.Add(moduleGrade);
             }
+            await _dbContext.SaveChangesAsync();
         }
 
     }

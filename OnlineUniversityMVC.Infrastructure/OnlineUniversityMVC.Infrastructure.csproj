@@ -20,4 +20,8 @@
     <ProjectReference Include="..\OnlineUniversityMVC.Application\OnlineUniversityMVC.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

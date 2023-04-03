@@ -16,6 +16,6 @@ namespace OnlineUniversityMVC.Application.Dtos
         [MaxLength(20, ErrorMessage = "Name must contain between 3 and 20 characters.")]
         public string Name { get; set; } = default!;
         public bool? IsActive { get; set; } = true;
-        public ICollection<Module> Modules { get; set; }
+        public IEnumerable<Module> Modules { get; set; }
     }
 }

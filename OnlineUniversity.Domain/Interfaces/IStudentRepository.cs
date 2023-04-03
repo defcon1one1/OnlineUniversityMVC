@@ -14,6 +14,7 @@ namespace OnlineUniversityMVC.Domain.Interfaces
         Task<Student?> GetById(int id);
         Task<Student?> GetByUserId(string userId);
         Task<IEnumerable<Enrollment>> GetStudentEnrollments(Student student);
+        Task<IEnumerable<Course>> GetNotEnrolledCourses(Student student);
 
     }
 }
