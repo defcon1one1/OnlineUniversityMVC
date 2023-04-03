@@ -27,7 +27,7 @@ namespace OnlineUniversityMVC.Presentation.Controllers
         public async Task<IActionResult> AddOrUpdate(int id, ModuleGradeDto gradeDto)
         {
             await _service.AddOrUpdateGrade(gradeDto);
-            return RedirectToAction("Index", "Student");
+            return RedirectToAction("Students", "Student");
         }
     }
 }

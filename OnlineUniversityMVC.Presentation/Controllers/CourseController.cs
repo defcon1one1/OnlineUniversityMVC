@@ -28,13 +28,6 @@ namespace OnlineUniversityMVC.Presentation.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Authorize (Roles = "Admin")]
-        public async Task<IActionResult> Create(CourseDto courseDto)
-        {
-            await _service.Create(courseDto);
-            return Redirect("Index");
-        }
-
     }
 }
+ 

@@ -1,0 +1,33 @@
+﻿@model OnlineUniversityMVC.Presentation.Models.EnrollViewModel
+
+<h1>Select a course</h1>
+
+@using (Html.BeginForm("Enroll", "Student"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.HiddenFor(model => model.StudentToEnroll.Id)
+    </div>
+
+    @if (Model.CoursesAvailable.Any())
+    {
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.CourseToEnroll.Id, new SelectList(Model.CoursesAvailable, "Id", "Name"), "Select a Course", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Enroll" class="btn btn-primary" />
+        </div>
+    }
+    else
+    {
+        <div>
+            There are no more courses that you can enroll in!
+        </div>
+    }
+
+
+    <div>
+        <a asp-action="MyEnrollments">Back to Enrollments</a>
+    </div>
+}
